@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJ 동물의료센터 - 김성준 대표원장</title>
+    <style>
+        /* 기본 설정 */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { color: #333; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* 컬러 변수 */
+        :root {
+            --primary-color: #0056b3; /* 신뢰감 있는 딥 블루 */
+            --secondary-color: #f4f6f9; /* 배경용 연한 그레이 */
+            --accent-color: #e74c3c; /* 응급 강조 레드 */
+        }
+
+        /* 헤더 & 네비게이션 */
+        header {
+            position: fixed; top: 0; width: 100%; background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 15px 20px;
+        }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary-color); }
+        .nav-menu { display: flex; gap: 30px; font-weight: 500; }
+        .nav-menu a:hover { color: var(--primary-color); }
+
+        /* 메인 히어로 섹션 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            padding-top: 80px;
+        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; font-weight: 300; }
+        .btn-main {
+            padding: 15px 40px; background: var(--primary-color); color: white;
+            font-size: 1.2rem; border-radius: 50px; transition: 0.3s;
+        }
+        .btn-main:hover { background: #003d82; }
+
+        /* 공통 섹션 스타일 */
+        section { padding: 100px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #222; }
+        .section-title span { color: var(--primary-color); }
+
+        /* 원장 소개 (About) */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
+        .doctor-img {
+            width: 100%; height: 500px; background: #ddd; border-radius: 10px;
+            /* 실제 이미지 대신 플레이스홀더 */
+            background: url('https://images.unsplash.com/photo-1559839734-2b71ea86b48e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover;
+        }
+        .doctor-info h3 { font-size: 2rem; margin-bottom: 15px; }
+        .doctor-info .role { color: var(--primary-color); font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; display: block; }
+        .doctor-info p { margin-bottom: 20px; color: #555; font-size: 1.1rem; }
+        .history li { margin-bottom: 10px; padding-left: 15px; border-left: 3px solid var(--primary-color); }
+
+        /* 진료 과목 (Services) */
+        .services { background: var(--secondary-color); }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .service-card {
+            background: white; padding: 40px 30px; border-radius: 15px;
+            text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s;
+        }
+        .service-card:hover { transform: translateY(-10px); }
+        .icon { font-size: 40px; margin-bottom: 20px; display: block; }
+        .service-card h4 { font-size: 1.4rem; margin-bottom: 15px; }
+
+        /* 진료 시간 및 오시는 길 (Info) */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .info-box { background: #333; color: white; padding: 40px; border-radius: 10px; }
+        .info-box h3 { border-bottom: 1px solid #555; padding-bottom: 15px; margin-bottom: 20px; }
+        .time-table div { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+        .emergency { color: var(--accent-color); font-weight: bold; margin-top: 20px; font-size: 1.2rem; }
+
+        /* 푸터 */
+        footer { background: #222; color: #888; text-align: center; padding: 30px 20px; font-size: 0.9rem; }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid, .info-grid { grid-template-columns: 1fr; }
+            .nav-menu { display: none; } /* 모바일 메뉴 생략 */
+            .doctor-img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">SJ 동물의료센터</div>
+            <nav class="nav-menu">
+                <a href="#about">병원소개</a>
+                <a href="#services">진료과목</a>
+                <a href="#info">진료시간</a>
+                <a href="#contact">오시는길</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>소중한 가족의 평생 주치의<br>SJ 동물의료센터</h1>
+            <p>24시간 365일, 대학병원급 첨단 장비와 전문 의료진이 함께합니다.</p>
+            <a href="#info" class="btn-main">진료 예약하기</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            대표원장 <span>인사말</span>
+        </div>
+        <div class="about-grid">
+            <div class="doctor-img"></div>
+            <div class="doctor-info">
+                <span class="role">대표원장 / 수의학박사</span>
+                <h3>김성준 (Kim Seongjun)</h3>
+                <p>
+                    "반려동물은 단순한 동물이 아니라 우리 삶을 함께하는 소중한 가족입니다.
+                    아픈 아이를 안고 병원을 찾으실 때의 그 간절한 마음을 누구보다 잘 알기에,
+                    과잉 진료 없이 원칙에 입각한 정직한 치료만을 약속드립니다."
+                </p>
+                <br>
+                <ul class="history">
+                    <li>전북대학교 수의과대학 및 동 대학원 석/박사 졸업</li>
+                    <li>前 서울 OO 대형 동물병원 외과 과장</li>
+                    <li>한국수의외과학회 정회원</li>
+                    <li>대한수의사회(KVMA) 정회원</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                전문 <span>진료센터</span>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="icon">🐕</span>
+                    <h4>외과 수술 센터</h4>
+                    <p>슬개골, 십자인대, 골절 등<br>대학병원급 정형/일반 외과 수술</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">🩺</span>
+                    <h4>내과 심장 센터</h4>
+                    <p>심장병, 신부전, 호르몬 질환<br>노령견 전문 집중 케어</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">📷</span>
+                    <h4>영상 의학 센터</h4>
+                    <p>최신 MRI / CT 도입<br>정밀 초음파 진단 시스템</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">🐈</span>
+                    <h4>고양이 클리닉</h4>
+                    <p>ISFM(세계고양이수의사회)<br>골드 레벨 기준 진료 환경</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" class="container">
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>⏰ 진료 시간 안내</h3>
+                <div class="time-table">
+                    <div><span>주간 진료</span> <span>09:00 ~ 19:00</span></div>
+                    <div><span>야간 진료</span> <span>19:00 ~ 22:00</span></div>
+                    <div><span>점심 시간</span> <span>13:00 ~ 14:00</span></div>
+                </div>
+                <p class="emergency">🚑 응급 진료 : 365일 24시간 연중무휴</p>
+            </div>
+            <div class="info-box" style="background: #f4f6f9; color: #333; border: 1px solid #ddd;">
+                <h3 style="border-bottom: 1px solid #ccc;">📍 오시는 길</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                    <strong>주소:</strong> 서울특별시 강남구 테헤란로 000 SJ타워 1층
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>전화:</strong> 02-1234-5678
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <strong>주차:</strong> 병원 건물 뒤편 전용 주차장 이용 가능 (발렛 파킹)
+                </p>
+                <div style="background: #ddd; height: 150px; border-radius: 5px; display:flex; align-items:center; justify-content:center; color:#777;">
+                    지도 API 영역 (Naver/Kakao Map)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>SJ 동물의료센터 | 대표자: 김성준 | 사업자등록번호: 000-00-00000</p>
+        <p>Copyright © 2024 SJ Animal Medical Center. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
