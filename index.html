@@ -931,7 +931,7 @@
         }
         if (!entries.length) { list.innerHTML = '<p class="blog-loading">등록된 글이 없습니다.</p>'; return; }
         const posts = await Promise.all(entries.map(async f => {
-            const r = await fetch(`${DIR}/${f.name}`);
+            const r = await fetch(`${DIR}/${f.name}`, { cache: 'no-cache' });
             const text = await r.text();
             const fm = parseFrontMatter(text);
             const body = text.replace(/^---\n[\s\S]*?\n---\n?/, '');
