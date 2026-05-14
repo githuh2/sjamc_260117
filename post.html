@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>건강 노트 — SY 동물의료센터</title>
+    <title>건강 노트 — SY 동물메디컬센터</title>
     <meta name="description" content="진료실에서 자주 듣는 질문, 계절별 주의사항, 예방 케어 가이드.">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="SY 동물의료센터">
-    <meta property="og:title" content="건강 노트 — SY 동물의료센터">
+    <meta property="og:site_name" content="SY 동물메디컬센터">
+    <meta property="og:title" content="건강 노트 — SY 동물메디컬센터">
     <meta property="og:description" content="진료실에서 자주 듣는 질문, 계절별 주의사항, 예방 케어 가이드.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1630359486912-4b085e38f1e7?auto=format&fit=crop&w=1200&h=630&q=80">
     <meta property="og:url" content="https://huhsungyup.com/post.html">
@@ -203,7 +203,7 @@
 <header id="site-header">
     <div class="nav">
         <a href="index.html" class="brand">
-            <span class="brand-mark">SY 동물의료센터</span>
+            <span class="brand-mark">SY 동물메디컬센터</span>
             <span class="brand-sub">SY Animal Medical Center</span>
         </a>
         <nav class="nav-menu">
@@ -226,7 +226,7 @@
 <footer>
     <div class="wrap footer-inner">
         <div>
-            <div class="footer-brand">SY 동물의료센터</div>
+            <div class="footer-brand">SY 동물메디컬센터</div>
             <div>대표자: 허성엽 · 사업자등록번호 000-00-00000</div>
         </div>
         <div>© 2026 SY Animal Medical Center.</div>
@@ -255,7 +255,7 @@
                 if (idx > 0) meta[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
             });
         }
-        if (meta.title) document.title = `${meta.title} — SY 동물의료센터`;
+        if (meta.title) document.title = `${meta.title} — SY 동물메디컬센터`;
 
         const renderer = new marked.Renderer();
         const origImage = renderer.image.bind(renderer);
@@ -274,7 +274,7 @@
             ${meta.date ? `<div class="post-meta">${meta.date}</div>` : ''}
             ${meta.title ? `<h1 class="post-title">${meta.title}</h1>` : ''}
             <div class="post-content">${marked.parse(body)}</div>
-            <div class="post-end">SY 동물의료센터 · 허성엽 대표원장</div>
+            <div class="post-end">SY 동물메디컬센터 · 허성엽 대표원장</div>
         `;
     } catch (e) {
         post.innerHTML = '<p class="loading">글을 불러오지 못했습니다.</p>';
