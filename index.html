@@ -3,341 +3,765 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJ 동물의료센터 - 허성엽 대표원장</title>
+    <title>SJ 동물의료센터 — 허성엽 대표원장</title>
+    <meta name="description" content="원칙을 지키는 동물 의료. 정직한 진료, 충분한 설명. SJ 동물의료센터.">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
     <style>
-        /* 기본 설정 */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { color: #333; line-height: 1.6; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #f4f6f9;
-            --accent-color: #e74c3c;
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ink:        #0e0f0a;
+            --ink-soft:   #1a1c16;
+            --cream:      #f5f3ec;
+            --cream-soft: #ebe8db;
+            --paper:      #ffffff;
+            --text:       #15160f;
+            --muted:      #75736a;
+            --border:     #dcd7c8;
+            --border-ink: rgba(255,255,255,0.10);
+            --accent:     #8a4a2c;
+            --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+            --font:       'Pretendard', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --mono:       'JetBrains Mono', ui-monospace, monospace;
         }
 
-        /* ===== 애니메이션 키프레임 (ipms-0501 reveal motion contract 참고) ===== */
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: none; }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--cream);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+            overflow-x: hidden;
         }
-        @keyframes reveal-up {
-            0%   { filter: blur(12px); opacity: 0; transform: translate3d(0, 42px, 0) scale(0.98); }
-            62%  { filter: blur(0);    opacity: 1; transform: translate3d(0, -4px, 0) scale(1.01); }
-            100% { filter: blur(0);    opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-        }
-        @keyframes reveal-left {
-            0%   { filter: blur(12px); opacity: 0; transform: translate3d(-58px, 20px, 0) rotate(-1deg); }
-            100% { filter: blur(0);    opacity: 1; transform: translate3d(0, 0, 0) rotate(0); }
-        }
-        @keyframes reveal-right {
-            0%   { filter: blur(12px); opacity: 0; transform: translate3d(58px, 20px, 0) rotate(1deg); }
-            100% { filter: blur(0);    opacity: 1; transform: translate3d(0, 0, 0) rotate(0); }
-        }
-        @keyframes reveal-pop {
-            0%   { filter: blur(12px); opacity: 0; transform: translate3d(0, 36px, 0) scale(0.92); }
-            68%  { filter: blur(0);    opacity: 1; transform: translate3d(0, -5px, 0) scale(1.025); }
-            100% { filter: blur(0);    opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-        }
-        @keyframes text-rise {
-            from { filter: blur(8px); opacity: 0; transform: translateY(24px); }
-            to   { filter: blur(0);   opacity: 1; transform: translateY(0); }
-        }
-        @keyframes grid-drift {
-            from { background-position: 0 0, 0 0; }
-            to   { background-position: 44px 44px, 44px 44px; }
-        }
-        @keyframes scroll-hint {
-            0%   { transform: translateY(0); opacity: 1; }
-            50%  { transform: translateY(10px); opacity: 0.5; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h3, h4, p, ul, dl, dd { margin: 0; padding: 0; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
 
-        /* reveal 시스템 — JS가 .is-visible를 추가하면 재생, 실패 시에도 보임 보장 */
+        /* ─── 모션 ─────────────────────────────────────────────── */
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade {
+            from { opacity: 0; } to { opacity: 1; }
+        }
         .reveal { opacity: 0; }
-        .reveal.is-visible { animation: reveal-up 0.85s var(--ease-out-expo) both; }
-        .reveal.from-left.is-visible  { animation-name: reveal-left; }
-        .reveal.from-right.is-visible { animation-name: reveal-right; }
-        .reveal.pop.is-visible        { animation-name: reveal-pop; }
-        .reveal.d1.is-visible { animation-delay: 0.08s; }
-        .reveal.d2.is-visible { animation-delay: 0.18s; }
-        .reveal.d3.is-visible { animation-delay: 0.28s; }
-        .reveal.d4.is-visible { animation-delay: 0.38s; }
-
+        .reveal.is-visible { animation: rise 0.9s var(--ease) both; }
+        .reveal.d1.is-visible { animation-delay: 0.05s; }
+        .reveal.d2.is-visible { animation-delay: 0.12s; }
+        .reveal.d3.is-visible { animation-delay: 0.19s; }
+        .reveal.d4.is-visible { animation-delay: 0.26s; }
         @media (prefers-reduced-motion: reduce) {
             .reveal, .reveal.is-visible { animation: none; opacity: 1; }
         }
 
-        /* 헤더 & 네비게이션 */
-        header {
-            position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;
-            animation: fade-in 0.6s var(--ease-out-expo) both;
+        /* ─── 공통 ─────────────────────────────────────────────── */
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; display: flex;
-            justify-content: space-between; align-items: center; padding: 15px 20px;
-        }
-        .logo { font-size: 24px; font-weight: 800; color: var(--primary-color); }
-        .nav-menu { display: flex; gap: 30px; font-weight: 500; }
-        .nav-menu a { position: relative; transition: color 0.3s; }
-        .nav-menu a::after {
-            content: ''; position: absolute; left: 0; bottom: -4px;
-            width: 0; height: 2px; background: var(--primary-color);
-            transition: width 0.3s var(--ease-out-expo);
-        }
-        .nav-menu a:hover { color: var(--primary-color); }
-        .nav-menu a:hover::after { width: 100%; }
+        .on-ink .eyebrow { color: #d4a87a; }
 
-        /* 메인 히어로 섹션 */
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: var(--font);
+            font-size: 14px; font-weight: 700;
+            padding: 14px 22px;
+            border: 1px solid var(--ink);
+            background: var(--ink); color: var(--cream);
+            border-radius: 0;
+            transition: background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+            cursor: pointer;
+        }
+        .btn:hover { background: transparent; color: var(--ink); transform: translateY(-1px); }
+        .on-ink .btn { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+        .on-ink .btn:hover { background: transparent; color: var(--cream); }
+        .btn .arrow { font-family: var(--mono); font-weight: 500; }
+
+        /* ─── 헤더 ─────────────────────────────────────────────── */
+        header {
+            position: fixed; inset: 0 0 auto 0;
+            z-index: 100;
+            background: rgba(245, 243, 236, 0.86);
+            backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        header.scrolled { border-bottom-color: var(--border); }
+        .nav {
+            max-width: 1180px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 28px;
+        }
+        .brand {
+            display: flex; align-items: baseline; gap: 10px;
+        }
+        .brand-mark {
+            font-weight: 800; font-size: 17px; letter-spacing: -0.01em;
+        }
+        .brand-sub {
+            font-family: var(--mono); font-size: 10px; font-weight: 500;
+            color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;
+        }
+        .nav-menu {
+            display: flex; gap: 32px; font-size: 14px; font-weight: 500;
+        }
+        .nav-menu a { color: var(--text); transition: color 0.2s; }
+        .nav-menu a:hover { color: var(--accent); }
+
+        /* ─── 히어로 ────────────────────────────────────────────── */
         .hero {
-            position: relative; height: 100vh;
+            position: relative;
+            min-height: 100vh;
+            background: var(--ink);
+            color: var(--cream);
+            overflow: hidden;
+            display: flex; align-items: flex-end;
+            padding: 140px 0 80px;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
             background:
-                linear-gradient(rgba(0,30,60,0.55), rgba(0,30,60,0.7)),
-                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-            padding-top: 80px; overflow: hidden;
+                linear-gradient(180deg, rgba(14,15,10,0.45) 0%, rgba(14,15,10,0.75) 70%, rgba(14,15,10,0.92) 100%),
+                url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1920&q=80') center/cover;
+            animation: fade 1.4s var(--ease) both;
         }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-            background-size: 44px 44px, 44px 44px;
-            animation: grid-drift 18s linear infinite alternate;
-            pointer-events: none;
+        .hero-inner {
+            position: relative; z-index: 2;
+            width: 100%;
         }
-        .hero-content { position: relative; z-index: 2; }
-        .hero-content h1 {
-            font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-            animation: text-rise 0.9s var(--ease-out-expo) both;
-            animation-delay: 0.15s;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: end;
         }
-        .hero-content p {
-            font-size: 1.5rem; margin-bottom: 30px; font-weight: 300;
-            animation: text-rise 0.9s var(--ease-out-expo) both;
-            animation-delay: 0.35s;
+        .hero h1 {
+            font-size: clamp(40px, 5.8vw, 76px);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+            margin-top: 28px;
         }
-        .btn-main {
-            display: inline-block; padding: 15px 40px;
-            background: var(--primary-color); color: white;
-            font-size: 1.2rem; border-radius: 50px;
-            transition: background 0.3s, transform 0.3s var(--ease-out-expo), box-shadow 0.3s;
-            animation: text-rise 0.9s var(--ease-out-expo) both;
-            animation-delay: 0.55s;
-            box-shadow: 0 8px 24px rgba(0, 86, 179, 0.35);
+        .hero h1 .em { font-style: italic; font-weight: 500; color: #d4a87a; }
+        .hero-tag-line { color: rgba(245,243,236,0.7); font-size: 16px; line-height: 1.7; max-width: 420px; }
+        .hero-cta-row { display: flex; gap: 14px; margin-top: 24px; }
+        .hero-meta {
+            position: absolute; left: 28px; bottom: 30px;
+            font-family: var(--mono); font-size: 10px; font-weight: 500;
+            color: rgba(245,243,236,0.55); letter-spacing: 0.18em; text-transform: uppercase;
+            z-index: 2;
         }
-        .btn-main:hover { background: #003d82; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0, 86, 179, 0.5); }
-        .scroll-hint {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            color: white; font-size: 0.85rem; opacity: 0.8;
-            animation: scroll-hint 2s ease-in-out infinite;
+        .hero-meta-r {
+            position: absolute; right: 28px; bottom: 30px;
+            font-family: var(--mono); font-size: 10px; font-weight: 500;
+            color: rgba(245,243,236,0.55); letter-spacing: 0.18em; text-transform: uppercase;
             z-index: 2;
         }
 
-        /* 공통 섹션 스타일 */
-        section { padding: 100px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #222; }
-        .section-title span { color: var(--primary-color); }
-
-        /* 원장 소개 (About) */
-        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
-        .doctor-img {
-            width: 100%; height: 500px; background: #ddd; border-radius: 10px;
-            background: url('1655192249095.webp') center/cover, #e8edf3;
-            box-shadow: 0 20px 60px rgba(0, 30, 60, 0.15);
-            transition: transform 0.5s var(--ease-out-expo);
+        /* ─── 섹션 공통 ─────────────────────────────────────────── */
+        section { padding: 120px 0; }
+        .section-head { max-width: 720px; margin-bottom: 64px; }
+        .section-head h2 {
+            font-size: clamp(28px, 3.6vw, 46px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.18;
+            margin-top: 14px;
         }
-        .doctor-img:hover { transform: scale(1.02); }
-        .doctor-info h3 { font-size: 2rem; margin-bottom: 15px; }
-        .doctor-info .role { color: var(--primary-color); font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; display: block; }
-        .doctor-info p { margin-bottom: 20px; color: #555; font-size: 1.1rem; }
+        .section-head p {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.75;
+            margin-top: 18px;
+            max-width: 580px;
+        }
+        .on-ink { background: var(--ink); color: var(--cream); }
+        .on-ink .section-head h2 { color: var(--cream); }
+        .on-ink .section-head p { color: rgba(245,243,236,0.65); }
+
+        /* ─── About ────────────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .doctor-portrait {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: url('1655192249095.webp') center/cover, var(--cream-soft);
+            position: relative;
+        }
+        .doctor-portrait::after {
+            content: '';
+            position: absolute; inset: 0;
+            border: 1px solid var(--border);
+            pointer-events: none;
+        }
+        .doctor-meta {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 22px;
+            font-size: 13px;
+        }
+        .doctor-meta dt {
+            font-family: var(--mono); font-size: 10px; font-weight: 700;
+            color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .doctor-meta dd { font-weight: 600; color: var(--text); }
+        .doctor-copy h3 {
+            font-size: clamp(22px, 2.6vw, 32px); font-weight: 800;
+            letter-spacing: -0.015em; line-height: 1.25;
+            margin-bottom: 28px;
+        }
+        .doctor-copy .lede {
+            font-size: 19px; line-height: 1.7; color: var(--text);
+            border-left: 2px solid var(--accent);
+            padding-left: 22px;
+            margin-bottom: 32px;
+        }
+        .doctor-copy p { color: var(--muted); margin-bottom: 18px; }
+        .history { margin-top: 36px; border-top: 1px solid var(--border); }
         .history li {
-            margin-bottom: 10px; padding-left: 15px;
-            border-left: 3px solid var(--primary-color);
-            transition: padding-left 0.3s var(--ease-out-expo);
+            display: grid; grid-template-columns: 80px 1fr;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
         }
-        .history li:hover { padding-left: 22px; }
+        .history li .year {
+            font-family: var(--mono); font-size: 11px; font-weight: 700;
+            color: var(--muted); letter-spacing: 0.08em;
+        }
 
-        /* 진료 과목 (Services) */
-        .services { background: var(--secondary-color); }
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        /* ─── Services (가로 스크롤) ────────────────────────────── */
+        .services-head {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            gap: 60px; margin-bottom: 56px;
+        }
+        .services-scroll {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(360px, 38%);
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: calc((100vw - 1180px) / 2 + 28px);
+            padding: 4px calc((100vw - 1180px) / 2 + 28px) 4px calc((100vw - 1180px) / 2 + 28px);
+            margin: 0 calc(-1 * ((100vw - 1180px) / 2 + 28px));
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media (max-width: 1240px) {
+            .services-scroll {
+                scroll-padding-left: 28px;
+                padding: 4px 28px;
+                margin: 0 -28px;
+            }
+        }
+        .services-scroll::-webkit-scrollbar { display: none; }
         .service-card {
-            position: relative; overflow: hidden;
-            background: white; padding: 40px 30px; border-radius: 15px;
-            text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
+            scroll-snap-align: start;
+            background: var(--ink-soft);
+            border: 1px solid var(--border-ink);
+            display: flex; flex-direction: column;
+            min-height: 460px;
+            overflow: hidden;
+            transition: transform 0.4s var(--ease);
+            position: relative;
         }
-        .service-card::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(0, 86, 179, 0.08), transparent);
-            transition: left 0.6s var(--ease-out-expo);
+        .service-card:hover { transform: translateY(-4px); }
+        .service-card .photo {
+            width: 100%; height: 240px;
+            background-size: cover; background-position: center;
+            transition: transform 0.6s var(--ease);
         }
-        .service-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0, 86, 179, 0.15); }
-        .service-card:hover::before { left: 100%; }
-        .service-card:hover .icon { transform: scale(1.15) rotate(-6deg); }
-        .icon {
-            font-size: 40px; margin-bottom: 20px; display: inline-block;
-            transition: transform 0.4s var(--ease-out-expo);
+        .service-card:hover .photo { transform: scale(1.04); }
+        .service-card .body { padding: 26px 26px 28px; flex: 1; display: flex; flex-direction: column; }
+        .service-card .num {
+            font-family: var(--mono); font-size: 11px; font-weight: 700;
+            color: #d4a87a; letter-spacing: 0.14em;
         }
-        .service-card h4 { font-size: 1.4rem; margin-bottom: 15px; }
+        .service-card h3 {
+            font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+            margin-top: 12px; margin-bottom: 10px;
+        }
+        .service-card p { color: rgba(245,243,236,0.7); font-size: 14.5px; line-height: 1.65; }
 
-        /* 진료 시간 및 오시는 길 (Info) */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .info-box { background: #333; color: white; padding: 40px; border-radius: 10px; transition: transform 0.4s var(--ease-out-expo); }
-        .info-box:hover { transform: translateY(-6px); }
-        .info-box h3 { border-bottom: 1px solid #555; padding-bottom: 15px; margin-bottom: 20px; }
-        .time-table div { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 5px; }
-        .emergency { color: var(--accent-color); font-weight: bold; margin-top: 20px; font-size: 1.2rem; }
+        .services-nav {
+            display: flex; gap: 8px;
+            margin-top: 28px;
+            justify-content: flex-end;
+        }
+        .services-nav button {
+            width: 44px; height: 44px;
+            background: transparent;
+            border: 1px solid var(--border-ink);
+            color: var(--cream);
+            font-family: var(--mono);
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .services-nav button:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+        .services-progress {
+            margin-top: 22px;
+            display: flex; gap: 6px; justify-content: flex-end;
+        }
+        .services-progress span {
+            width: 24px; height: 2px;
+            background: rgba(255,255,255,0.18);
+            transition: background 0.3s;
+        }
+        .services-progress span.active { background: #d4a87a; }
 
-        footer { background: #222; color: #888; text-align: center; padding: 30px 20px; font-size: 0.9rem; }
+        /* ─── Photo strip ──────────────────────────────────────── */
+        .strip {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1.2fr;
+            gap: 16px;
+            padding: 0 28px;
+            max-width: 1180px; margin: 0 auto;
+            margin-top: -60px; margin-bottom: 0;
+        }
+        .strip-img {
+            width: 100%; aspect-ratio: 4/3;
+            background-size: cover; background-position: center;
+        }
 
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .about-grid, .info-grid { grid-template-columns: 1fr; }
+        /* ─── Blog ─────────────────────────────────────────────── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .blog-card {
+            display: block;
+            background: var(--paper);
+            border: 1px solid var(--border);
+            padding: 32px 28px;
+            transition: transform 0.3s var(--ease), border-color 0.3s;
+        }
+        .blog-card:hover { transform: translateY(-3px); border-color: var(--ink); }
+        .blog-card time {
+            font-family: var(--mono); font-size: 11px; font-weight: 700;
+            color: var(--muted); letter-spacing: 0.12em;
+        }
+        .blog-card h3 {
+            font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+            margin: 14px 0 12px; line-height: 1.35;
+        }
+        .blog-card p { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+        .blog-loading { grid-column: 1/-1; color: var(--muted); text-align: center; padding: 40px; font-size: 14px; }
+
+        /* ─── Info ─────────────────────────────────────────────── */
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        }
+        .info-block h3 {
+            font-family: var(--mono); font-size: 11px; font-weight: 700;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: #d4a87a;
+            margin-bottom: 24px;
+        }
+        .time-table {
+            border-top: 1px solid var(--border-ink);
+        }
+        .time-table div {
+            display: flex; justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-ink);
+            font-size: 15px;
+        }
+        .time-table div span:first-child { color: rgba(245,243,236,0.6); }
+        .time-table div span:last-child { font-family: var(--mono); font-weight: 500; }
+        .emergency {
+            margin-top: 24px;
+            padding: 16px 18px;
+            background: rgba(212,168,122,0.1);
+            border-left: 2px solid #d4a87a;
+            font-size: 14px;
+        }
+        .info-block .address-block dt {
+            font-family: var(--mono); font-size: 10px; font-weight: 700;
+            color: rgba(245,243,236,0.5);
+            letter-spacing: 0.14em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .info-block .address-block dd {
+            margin-bottom: 24px;
+            font-size: 15.5px;
+        }
+
+        /* ─── Footer ───────────────────────────────────────────── */
+        footer {
+            background: var(--ink);
+            color: rgba(245,243,236,0.55);
+            padding: 60px 0 40px;
+            border-top: 1px solid var(--border-ink);
+            font-size: 13px;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .footer-brand {
+            font-weight: 800; font-size: 18px; color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        /* ─── Mobile ───────────────────────────────────────────── */
+        @media (max-width: 880px) {
             .nav-menu { display: none; }
-            .doctor-img { height: 300px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .services-head { flex-direction: column; align-items: flex-start; }
+            .services-scroll { grid-auto-columns: 84%; scroll-padding-left: 24px; padding: 4px 24px; margin: 0 -24px; }
+            .strip { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; gap: 40px; }
+            section { padding: 80px 0; }
+            .hero { padding: 120px 0 80px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo">SJ 동물의료센터</div>
-            <nav class="nav-menu">
-                <a href="#about">병원소개</a>
-                <a href="#services">진료과목</a>
-                <a href="#info">진료시간</a>
-                <a href="#contact">오시는길</a>
-            </nav>
+<header id="site-header">
+    <div class="nav">
+        <div class="brand">
+            <span class="brand-mark">SJ 동물의료센터</span>
+            <span class="brand-sub">SJ Animal Medical Center</span>
         </div>
-    </header>
+        <nav class="nav-menu">
+            <a href="#about">소개</a>
+            <a href="#services">진료</a>
+            <a href="#blog">건강 노트</a>
+            <a href="#info">진료시간 · 오시는 길</a>
+        </nav>
+    </div>
+</header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>소중한 가족의 평생 주치의<br>SJ 동물의료센터</h1>
-            <p>24시간 365일, 대학병원급 첨단 장비와 전문 의료진이 함께합니다.</p>
-            <a href="#info" class="btn-main">진료 예약하기</a>
+<!-- ─── HERO ─────────────────────────────────────────────────── -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-meta">— SJ AMC / Est. 2024</div>
+    <div class="hero-meta-r">Seoul, KR</div>
+    <div class="wrap hero-inner">
+        <div class="hero-grid">
+            <div>
+                <span class="eyebrow" style="color:#d4a87a">가족의 평생 주치의</span>
+                <h1>
+                    원칙을 지키는<br>
+                    동물 의료, <span class="em">정직한</span> 진료.
+                </h1>
+            </div>
+            <div>
+                <p class="hero-tag-line">
+                    과잉 진료 없이, 충분한 설명과 함께. 24시간 365일,
+                    대학병원급 장비와 전문 의료진이 함께합니다.
+                </p>
+                <div class="hero-cta-row">
+                    <a href="#info" class="btn">진료 예약 <span class="arrow">→</span></a>
+                </div>
+            </div>
         </div>
-        <div class="scroll-hint">▼ Scroll</div>
-    </section>
+    </div>
+</section>
 
-    <section id="about" class="container">
-        <div class="section-title reveal">
-            대표원장 <span>인사말</span>
+<!-- ─── ABOUT ────────────────────────────────────────────────── -->
+<section id="about">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <span class="eyebrow">대표원장 인사말</span>
+            <h2>아픈 아이를 안고 오시는 그 마음을<br>가장 잘 아는 진료자입니다.</h2>
         </div>
         <div class="about-grid">
-            <div class="doctor-img reveal from-left"></div>
-            <div class="doctor-info">
-                <span class="role reveal from-right d1">대표원장 / 수의사</span>
-                <h3 class="reveal from-right d2">허성엽 (Huh Sung Yup)</h3>
-                <p class="reveal from-right d3">
-                    "반려동물은 단순한 동물이 아니라 우리 삶을 함께하는 소중한 가족입니다.
-                    아픈 아이를 안고 병원을 찾으실 때의 그 간절한 마음을 누구보다 잘 알기에,
-                    과잉 진료 없이 원칙에 입각한 정직한 치료만을 약속드립니다."
+            <div class="reveal from-left">
+                <div class="doctor-portrait"></div>
+                <dl class="doctor-meta">
+                    <div>
+                        <dt>Name</dt>
+                        <dd>허성엽 / Huh Sung Yup</dd>
+                    </div>
+                    <div>
+                        <dt>Role</dt>
+                        <dd>대표원장 · 수의사</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="doctor-copy reveal d1">
+                <h3>반려동물은 단순한 동물이 아니라<br>우리 삶을 함께하는 가족입니다.</h3>
+                <p class="lede">
+                    “아픈 아이를 안고 병원을 찾으실 때의 그 간절한 마음을 누구보다 잘 알기에,
+                    과잉 진료 없이 원칙에 입각한 정직한 치료만을 약속드립니다.”
                 </p>
-                <br>
-                <ul class="history reveal from-right d4">
-                    <li>국립경상대학교 수의학과 졸업</li>
-                    <li>前 서울 OO 대형 동물병원 외과 과장</li>
-                    <li>한국수의외과학회 정회원</li>
-                    <li>대한수의사회(KVMA) 정회원</li>
+                <p>
+                    SJ 동물의료센터는 보호자와 충분히 대화한 뒤 진료 방향을 결정합니다.
+                    검사 항목과 비용을 미리 공유하고, 필요하지 않은 처치는 권하지 않습니다.
+                </p>
+                <ul class="history">
+                    <li>
+                        <span class="year">학력</span>
+                        <span>국립경상대학교 수의학과 졸업</span>
+                    </li>
+                    <li>
+                        <span class="year">경력</span>
+                        <span>前 서울 OO 대형 동물병원 외과 과장</span>
+                    </li>
+                    <li>
+                        <span class="year">학회</span>
+                        <span>한국수의외과학회 정회원</span>
+                    </li>
+                    <li>
+                        <span class="year">자격</span>
+                        <span>대한수의사회(KVMA) 정회원</span>
+                    </li>
                 </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title reveal">
-                전문 <span>진료센터</span>
+<!-- ─── PHOTO STRIP ──────────────────────────────────────────── -->
+<div class="strip">
+    <div class="strip-img reveal" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80')"></div>
+    <div class="strip-img reveal d1" style="background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=80')"></div>
+    <div class="strip-img reveal d2" style="background-image: url('https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=900&q=80')"></div>
+</div>
+
+<!-- ─── SERVICES (가로 스크롤) ───────────────────────────────── -->
+<section id="services" class="on-ink">
+    <div class="wrap">
+        <div class="services-head">
+            <div class="section-head reveal" style="margin-bottom: 0;">
+                <span class="eyebrow">진료 센터</span>
+                <h2>전문 진료, 깊이 있는 케어.</h2>
+                <p>4개의 전문 센터로 구성되어, 어떤 증상이든 정확한 분야의 진료자가 즉시 대응합니다.</p>
             </div>
-            <div class="service-grid">
-                <div class="service-card reveal pop d1">
-                    <span class="icon">🐕</span>
-                    <h4>외과 수술 센터</h4>
-                    <p>슬개골, 십자인대, 골절 등<br>대학병원급 정형/일반 외과 수술</p>
-                </div>
-                <div class="service-card reveal pop d2">
-                    <span class="icon">🩺</span>
-                    <h4>내과 심장 센터</h4>
-                    <p>심장병, 신부전, 호르몬 질환<br>노령견 전문 집중 케어</p>
-                </div>
-                <div class="service-card reveal pop d3">
-                    <span class="icon">📷</span>
-                    <h4>영상 의학 센터</h4>
-                    <p>최신 MRI / CT 도입<br>정밀 초음파 진단 시스템</p>
-                </div>
-                <div class="service-card reveal pop d4">
-                    <span class="icon">🐈</span>
-                    <h4>고양이 클리닉</h4>
-                    <p>ISFM(세계고양이수의사회)<br>골드 레벨 기준 진료 환경</p>
-                </div>
+            <div class="services-nav reveal d2">
+                <button id="svc-prev" aria-label="이전">←</button>
+                <button id="svc-next" aria-label="다음">→</button>
             </div>
         </div>
-    </section>
 
-    <section id="info" class="container">
+        <div class="services-scroll" id="svc-scroll">
+            <article class="service-card">
+                <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80')"></div>
+                <div class="body">
+                    <span class="num">01 / 외과</span>
+                    <h3>외과 수술 센터</h3>
+                    <p>슬개골 탈구, 십자인대 파열, 골절 등 정형외과부터 연조직 일반외과까지. 대학병원급 수술실과 멸균 시스템.</p>
+                </div>
+            </article>
+            <article class="service-card">
+                <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=900&q=80')"></div>
+                <div class="body">
+                    <span class="num">02 / 내과</span>
+                    <h3>내과 · 심장 센터</h3>
+                    <p>심장병, 신부전, 호르몬 질환의 노령견 전문 집중 케어. 정기 추적 검사와 약물 농도 관리.</p>
+                </div>
+            </article>
+            <article class="service-card">
+                <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&fit=crop&w=900&q=80')"></div>
+                <div class="body">
+                    <span class="num">03 / 영상</span>
+                    <h3>영상 의학 센터</h3>
+                    <p>MRI · CT · 디지털 X-ray · 정밀 초음파. 진단의 정확도를 결정하는 영상 장비를 모두 갖췄습니다.</p>
+                </div>
+            </article>
+            <article class="service-card">
+                <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=900&q=80')"></div>
+                <div class="body">
+                    <span class="num">04 / 고양이</span>
+                    <h3>고양이 클리닉</h3>
+                    <p>ISFM(세계고양이수의사회) 골드 레벨 진료 환경. 분리 대기실, 페로몬 환경, 고양이 친화 핸들링.</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="services-progress" id="svc-progress">
+            <span class="active"></span><span></span><span></span><span></span>
+        </div>
+    </div>
+</section>
+
+<!-- ─── BLOG ─────────────────────────────────────────────────── -->
+<section id="blog">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <span class="eyebrow">건강 노트</span>
+            <h2>보호자가 알아두면 좋은 이야기.</h2>
+            <p>진료실에서 자주 듣는 질문, 계절별 주의사항, 예방 케어 가이드를 정리합니다.</p>
+        </div>
+        <div class="blog-grid" id="blog-list">
+            <p class="blog-loading">글을 불러오는 중…</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── INFO ─────────────────────────────────────────────────── -->
+<section id="info" class="on-ink">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <span class="eyebrow">진료 시간 · 오시는 길</span>
+            <h2>365일, 가까이에서.</h2>
+        </div>
         <div class="info-grid">
-            <div class="info-box reveal from-left">
-                <h3>⏰ 진료 시간 안내</h3>
+            <div class="info-block reveal from-left">
+                <h3>Hours</h3>
                 <div class="time-table">
-                    <div><span>주간 진료</span> <span>09:00 ~ 19:00</span></div>
-                    <div><span>야간 진료</span> <span>19:00 ~ 22:00</span></div>
-                    <div><span>점심 시간</span> <span>13:00 ~ 14:00</span></div>
+                    <div><span>주간 진료</span><span>09:00 – 19:00</span></div>
+                    <div><span>야간 진료</span><span>19:00 – 22:00</span></div>
+                    <div><span>점심 시간</span><span>13:00 – 14:00</span></div>
+                    <div><span>응급 진료</span><span>24h · 연중무휴</span></div>
                 </div>
-                <p class="emergency">🚑 응급 진료 : 365일 24시간 연중무휴</p>
+                <p class="emergency">응급 상황은 사전 전화 없이 바로 내원하셔도 됩니다.</p>
             </div>
-            <div class="info-box reveal from-right" style="background: #f4f6f9; color: #333; border: 1px solid #ddd;">
-                <h3 style="border-bottom: 1px solid #ccc;">📍 오시는 길</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 15px;">
-                    <strong>주소:</strong> 서울특별시 강남구 테헤란로 000 SJ타워 1층
-                </p>
-                <p style="margin-bottom: 15px;">
-                    <strong>전화:</strong> 02-1234-5678
-                </p>
-                <p style="margin-bottom: 15px;">
-                    <strong>주차:</strong> 병원 건물 뒤편 전용 주차장 이용 가능 (발렛 파킹)
-                </p>
-                <div style="background: #ddd; height: 150px; border-radius: 5px; display:flex; align-items:center; justify-content:center; color:#777;">
-                    지도 API 영역 (Naver/Kakao Map)
-                </div>
+            <div class="info-block reveal d1">
+                <h3>Location</h3>
+                <dl class="address-block">
+                    <dt>주소</dt>
+                    <dd>서울특별시 강남구 테헤란로 000<br>SJ타워 1층</dd>
+                    <dt>전화</dt>
+                    <dd>02-1234-5678</dd>
+                    <dt>주차</dt>
+                    <dd>건물 뒤편 전용 주차장 · 발렛 가능</dd>
+                </dl>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <p>SJ 동물의료센터 | 대표자: 허성엽 | 사업자등록번호: 000-00-00000</p>
-        <p>Copyright © 2026 SJ Animal Medical Center. All rights reserved.</p>
-    </footer>
+<footer>
+    <div class="wrap footer-inner">
+        <div>
+            <div class="footer-brand">SJ 동물의료센터</div>
+            <div>대표자: 허성엽 · 사업자등록번호 000-00-00000</div>
+        </div>
+        <div>© 2026 SJ Animal Medical Center.</div>
+    </div>
+</footer>
 
-    <script>
-        // Scroll-triggered reveal — IntersectionObserver로 한 번만 재생.
-        // JS 실패 시에도 reduced-motion 사용자처럼 동작하도록 fallback 제공.
-        (function () {
-            const els = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window)) {
-                els.forEach(el => el.classList.add('is-visible'));
-                return;
+<script>
+// ─── Reveal on scroll ──────────────────────────────────────────
+(function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+    }
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
             }
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-            els.forEach(el => io.observe(el));
-        })();
-    </script>
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(el => io.observe(el));
+})();
+
+// ─── Header scrolled state ─────────────────────────────────────
+(function () {
+    const header = document.getElementById('site-header');
+    const update = () => header.classList.toggle('scrolled', window.scrollY > 20);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+})();
+
+// ─── Services horizontal scroll ────────────────────────────────
+(function () {
+    const scroll = document.getElementById('svc-scroll');
+    if (!scroll) return;
+    const prev = document.getElementById('svc-prev');
+    const next = document.getElementById('svc-next');
+    const dots = document.querySelectorAll('#svc-progress span');
+    const cards = scroll.querySelectorAll('.service-card');
+
+    function cardStep() {
+        if (cards.length < 2) return scroll.clientWidth * 0.8;
+        return cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+    }
+    function updateProgress() {
+        const step = cardStep();
+        const idx = Math.round(scroll.scrollLeft / step);
+        dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
+    }
+    prev.addEventListener('click', () => scroll.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
+    next.addEventListener('click', () => scroll.scrollBy({ left: cardStep(), behavior: 'smooth' }));
+    scroll.addEventListener('scroll', updateProgress, { passive: true });
+})();
+
+// ─── Blog list (GitHub API + relative fetch) ───────────────────
+(async function () {
+    const list = document.getElementById('blog-list');
+    if (!list) return;
+    const OWNER = 'githuh2', REPO = 'sjamc_260117', DIR = 'posts';
+    try {
+        const cacheKey = `blog:${OWNER}/${REPO}`;
+        let entries;
+        try {
+            const cached = sessionStorage.getItem(cacheKey);
+            if (cached) entries = JSON.parse(cached);
+        } catch (e) {}
+        if (!entries) {
+            const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${DIR}`);
+            if (!res.ok) throw new Error('목록을 불러오지 못했습니다');
+            entries = (await res.json()).filter(f => f.name.endsWith('.md'));
+            try { sessionStorage.setItem(cacheKey, JSON.stringify(entries)); } catch (e) {}
+        }
+        if (!entries.length) { list.innerHTML = '<p class="blog-loading">등록된 글이 없습니다.</p>'; return; }
+        const posts = await Promise.all(entries.map(async f => {
+            const r = await fetch(`${DIR}/${f.name}`);
+            const text = await r.text();
+            return { name: f.name, ...parseFrontMatter(text) };
+        }));
+        posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        list.innerHTML = posts.map(p => `
+            <a class="blog-card reveal" href="post.html?file=${encodeURIComponent(p.name)}">
+                <time>${escapeHtml(p.date || '')}</time>
+                <h3>${escapeHtml(p.title || p.name)}</h3>
+                <p>${escapeHtml(p.summary || '')}</p>
+            </a>
+        `).join('');
+        document.querySelectorAll('.blog-card.reveal').forEach((el, i) => {
+            setTimeout(() => el.classList.add('is-visible'), 60 * i);
+        });
+    } catch (e) {
+        list.innerHTML = `<p class="blog-loading">블로그를 불러오지 못했습니다.</p>`;
+    }
+
+    function parseFrontMatter(text) {
+        const m = text.match(/^---\n([\s\S]*?)\n---/);
+        if (!m) return {};
+        const fm = {};
+        m[1].split('\n').forEach(line => {
+            const idx = line.indexOf(':');
+            if (idx > 0) fm[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
+        });
+        return fm;
+    }
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+})();
+</script>
 
 </body>
 </html>
